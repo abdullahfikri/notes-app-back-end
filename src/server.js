@@ -1,11 +1,12 @@
 // eslint-disable-next-line no-undef
 const Hapi = require('@hapi/hapi');
+// eslint-disable-next-line no-undef
 const routes = require('./routes');
 
 const init = async () => {
     const server = Hapi.server({
         port: 5001,
-        host: 'localhost',
+        host: process.env.NODE_ENV !== 'production' ? 'localhost' : '0.0.0.0',
         routes: {
             cors: {
                 origin: ['*'],
